@@ -28,7 +28,7 @@ export default class Progress extends Component {
   componentDidMount() {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:5000/statistiques',
+      url: 'https://apex-stats-back.herokuapp.com/statistiques',
       headers: {
         'Access-Control-Allow-Origin': true,
       }})
