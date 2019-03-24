@@ -10,9 +10,10 @@ export default class StatsByCharacter extends Component {
   }
 
   renderStats(){
+    const characters = this.state.stats.map((stat) => <CharacterStats stats={ stat }/>);
     return (
       <div className="StatsByCharacter" id="StatsByCharacter">
-        <CharacterStats legendName="test"/>
+        {characters}
       </div>);
   }
 
@@ -32,9 +33,10 @@ export default class StatsByCharacter extends Component {
             console.log(content.errors[0].message);
         }else{
             content.data.children.forEach(personnage => {
-                var statLegend = { legendName:"", stats: []};
+                var statLegend = { stats: []};
                 
                 statLegend.legendName = personnage.metadata.legend_name;
+                statLegend.icon = personnage.metadata.icon;
                 personnage.stats.forEach(stat => {
                     statLegend.stats.push({statName: stat.metadata.name, value: stat.displayValue});
                 });
