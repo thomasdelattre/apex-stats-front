@@ -1,0 +1,28 @@
+#Footer a{
+    text-decoration: underline;
+    color:white;
+}
+
+#Footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-end;
+    width: 100%;
+    height:100vh;
+    background-color: rgb(17, 15, 15);
+    color:white;
+    position: relative;
+    bottom:0;
+}
+
+#Footer span{
+    margin-left: 50px;
+}
+
+
+@media only screen and (max-width: 599px) {    
+    #Footer{
+        height:100px;
+    }
+}

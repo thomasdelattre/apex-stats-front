@@ -1,0 +1,38 @@
+.Header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:100vh;
+    width:100%;
+    background-color: rgb(17, 15, 15);
+}
+#logo{
+    margin-top: 150px;
+    height:200px;
+}
+#searchUser{
+    background-color: rgb(180, 180, 180);
+    margin-top: 150px;
+}
+#searchUser:hover{
+    background-color: rgb(153, 153, 153);
+}
+
+#diviser{
+    border:1px solid white;
+    border-radius:100%;
+    width:200px;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 70px;
+    right:200px;
+}
+
+#downArrow{
+    width:100px;
+}
