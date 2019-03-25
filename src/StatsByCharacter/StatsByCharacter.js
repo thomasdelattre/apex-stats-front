@@ -4,9 +4,11 @@ import CharacterStats from './CharacterStats.js';
 import axios from 'axios';
 
 export default class StatsByCharacter extends Component {
-  constructor () {
+  constructor (props) {
     super();
-    this.state = { }
+    this.state = { 
+      pseudo: props.pseudo
+    }
   }
 
   renderStats(){
@@ -20,7 +22,7 @@ export default class StatsByCharacter extends Component {
   componentDidMount() {
     axios({
       method: 'get',
-      url: 'https://cors-anywhere.herokuapp.com/https://public-api.tracker.gg/apex/v1/standard/profile/5/Gadhena',
+      url: 'https://cors-anywhere.herokuapp.com/https://public-api.tracker.gg/apex/v1/standard/profile/5/'+this.state.pseudo,
       headers: {
         'Access-Control-Allow-Origin': true,
         'TRN-Api-Key' : '7488836b-98bc-46a9-859b-848fbb069057'

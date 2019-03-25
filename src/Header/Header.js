@@ -5,9 +5,17 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
 
 
-const styles = theme => ({search: {
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  search: {
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -48,9 +56,24 @@ searchIcon: {
 }});
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: props.state || ''
+    }
+  }
+
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  }
+
   render() {
-    const { classes } = this.props;   
-    
+    const { classes } = this.props;  
+    const { value } = this.state;     
+    var	handleToUpdate	=	this.props.handleToUpdate;
+
     return (
       <div className="Header" id="Header">
         <img src={logo} id="logo" alt="logo" />
@@ -64,8 +87,13 @@ class Header extends React.Component {
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
+            onChange={this.handleChange}
+            value={value}
           />
         </div>
+        <Button variant="outlined" onClick={() => handleToUpdate(this.state.value)} color="primary" className={classes.button}>
+            Submit
+        </Button>
       </div>
     );
   }
