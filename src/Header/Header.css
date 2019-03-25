@@ -6,6 +6,7 @@
     height:100vh;
     width:100%;
     background-color: rgb(17, 15, 15);
+    z-index: 1000;
 }
 #logo{
     margin-top: 150px;
@@ -13,10 +14,15 @@
 }
 #searchUser{
     background-color: rgb(180, 180, 180);
-    margin-top: 150px;
+    margin: 150px 0 10px 0;
 }
 #searchUser:hover{
     background-color: rgb(153, 153, 153);
+}
+
+#divSearchUser{
+    display:flex;
+    flex-direction: column;
 }
 
 #diviser{

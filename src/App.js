@@ -10,7 +10,7 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {};
-    var handleToUpdate  = this.handleToUpdate.bind(this);
+    this.handleToUpdate.bind(this);
   }
 
   handleToUpdate(pseudo){
@@ -23,9 +23,10 @@ export default class App extends Component {
     return(
       <div>
         <HamburgerMenu />
-        <Progress pseudo={this.state.pseudo}/>
-        <History pseudo={this.state.pseudo}/>
         <StatsByCharacter pseudo={this.state.pseudo}/>
+        <Progress pseudo={this.state.pseudo}/>
+        {/* <History pseudo={this.state.pseudo}/> */}
+        <Footer />
       </div>
       )
   }
@@ -36,7 +37,6 @@ export default class App extends Component {
         <div id="App">
             <Header handleToUpdate = {handleToUpdate.bind(this)}/>
             {this.state.pseudo ? this.displayStats() : <div></div>}
-            <Footer />
         </div>
     );
   }

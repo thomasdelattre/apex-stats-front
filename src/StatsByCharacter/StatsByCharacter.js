@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './StatsByCharacter.css';
 import CharacterStats from './CharacterStats.js';
+import Zoom from 'react-reveal/Zoom';
 import axios from 'axios';
 
 export default class StatsByCharacter extends Component {
@@ -12,14 +13,18 @@ export default class StatsByCharacter extends Component {
   }
 
   renderStats(){
-    const characters = this.state.stats.map((stat) => <CharacterStats stats={ stat }/>);
+    const characters = this.state.stats.map((stat, key) => 
+    <Zoom left duration={500*key}>
+      <CharacterStats stats={ stat } key={key}/>
+    </Zoom>
+    );
     return (
       <div className="StatsByCharacter" id="StatsByCharacter">
         {characters}
       </div>);
   }
 
-  componentDidMount() {
+  updateView(){
     axios({
       method: 'get',
       url: 'https://cors-anywhere.herokuapp.com/https://public-api.tracker.gg/apex/v1/standard/profile/5/'+this.state.pseudo,
@@ -52,10 +57,16 @@ export default class StatsByCharacter extends Component {
         }
       })
       .catch(error => console.log(error));
-    
+  }
+
+  componentDidMount() {
+    this.updateView();    
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ pseudo: nextProps.pseudo, stats:[]}, () => {this.updateView()});    
   }
 
   render() {
-    return this.state.stats ? this.renderStats() : <div></div> ;
+    return this.state.stats ? this.renderStats() : <div className="StatsByCharacter" >En attente de donnée</div> ;
   }
 }

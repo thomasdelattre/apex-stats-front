@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: 0,
   },
   input: {
     display: 'none',
@@ -77,23 +77,25 @@ class Header extends React.Component {
     return (
       <div className="Header" id="Header">
         <img src={logo} id="logo" alt="logo" />
-        <div id="searchUser" className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+        <div id="divSearchUser">
+          <div id="searchUser" className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Pseudo…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              onChange={this.handleChange}
+              value={value}
+            />
           </div>
-          <InputBase
-            placeholder="Pseudo…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            onChange={this.handleChange}
-            value={value}
-          />
+          <Button variant="outlined" onClick={() => handleToUpdate(this.state.value)} color="primary" className={classes.button}>
+              Submit
+          </Button>
         </div>
-        <Button variant="outlined" onClick={() => handleToUpdate(this.state.value)} color="primary" className={classes.button}>
-            Submit
-        </Button>
       </div>
     );
   }

@@ -20,7 +20,7 @@ const styles = {
 function CharacterStats(props) {
 
   const { classes } = props;
-  const properties = props.stats.stats.map((property) => <Typography component="p">{property.statName + ": " + property.value}</Typography>);
+  const properties = props.stats.stats.map((property, key) => <Typography component="p" key={key}>{property.statName + ": " + property.value}</Typography>);
 
   return (
     <Card className={classes.card}>
