@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import './StatsByCharacter.css';
 import CharacterStats from './CharacterStats.js';
 import Zoom from 'react-reveal/Zoom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 
 export default class StatsByCharacter extends Component {
   constructor (props) {
     super();
     this.state = { 
-      pseudo: props.pseudo
+      pseudo: props.pseudo,
+      message: null
     }
   }
 
   renderStats(){
     const characters = this.state.stats.map((stat, key) => 
-    <Zoom left duration={500*key}>
+    <Zoom left duration={500*key} key={key}>
       <CharacterStats stats={ stat } key={key}/>
     </Zoom>
     );
@@ -51,12 +53,16 @@ export default class StatsByCharacter extends Component {
             });
             
             const newState = Object.assign({}, this.state, {
-                stats: stats
+                stats: stats,
+                message: null
               });
               this.setState(newState);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => this.setState(
+        {
+          message: error.message//error.response.data.errors[0]
+        }));
   }
 
   componentDidMount() {
@@ -67,6 +73,14 @@ export default class StatsByCharacter extends Component {
   }
 
   render() {
-    return this.state.stats ? this.renderStats() : <div className="StatsByCharacter" >En attente de donnée</div> ;
+    return this.state.stats && this.state.stats.length > 0 
+            ? this.renderStats() 
+            : this.state.message 
+              ? <div className="StatsByCharacter">
+                  <span id="messageToDisplay">{ this.state.message }</span>
+                </div>  
+                : <div className="StatsByCharacter">
+                    <span className="spinner"><CircularProgress size={200} /></span>
+                </div>;
   }
 }

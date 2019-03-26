@@ -21,3 +21,17 @@
     background-size: cover;
     background-image: url(wallpaper.jpg);
 }
+
+#messageToDisplay{
+    z-index: 1000;
+    border: 3px solid red;
+    color: red;
+    border-radius: 20px;
+    background-color: white;
+    padding: 50px;
+    font-size: 2em;
+}
+
+.spinner{
+    z-index: 1000;
+}

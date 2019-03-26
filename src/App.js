@@ -22,7 +22,7 @@ export default class App extends Component {
   displayStats(){
     return(
       <div>
-        <HamburgerMenu />
+        {/* <HamburgerMenu /> */}
         <StatsByCharacter pseudo={this.state.pseudo}/>
         <Progress pseudo={this.state.pseudo}/>
         {/* <History pseudo={this.state.pseudo}/> */}
